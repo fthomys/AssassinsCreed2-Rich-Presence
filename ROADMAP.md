@@ -14,6 +14,7 @@
 - [ ] Memory detection while a memory is actually being played (mission state 5)
 - [ ] Landmarks in Florence and Venice, so far only checked around San Gimignano
 - [ ] Main menu no longer showing the player template as free roaming
+- [ ] GitHub Actions build on every push, release zip for `vX.X.X` tags
 
 ## Planned
 
@@ -26,7 +27,6 @@
 - [ ] Collectibles: feathers, glyphs and codex pages
 - [ ] Better texts for the Desmond segments and Altaïr's memory
 - [ ] Player stats on the retail 1.01 executable. This needs memory dumps from that version.
-- [ ] GitHub Actions workflow that builds the plugin and attaches a zip to each release
 
 ## Not planned
 

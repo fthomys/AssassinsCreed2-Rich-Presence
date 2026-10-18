@@ -38,8 +38,10 @@ simply leaves out everything else.
 
 1. Install [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) as
    `dinput8.dll` in the game folder, if you don't have it already.
-2. Copy `DiscordPresenceAC2.asi` and `DiscordPresenceAC2.ini` into the `scripts` folder inside the
-   game folder. Create the folder if it doesn't exist.
+2. Download `DiscordPresenceAC2.zip` from the
+   [latest release](https://github.com/fthomys/AssassinsCreed2-Rich-Presence/releases/latest) and
+   extract it into the game folder, so that `DiscordPresenceAC2.asi` and `DiscordPresenceAC2.ini`
+   end up in the `scripts` folder.
 3. Start the game with Discord running.
 
 ## Configuration
@@ -153,6 +155,14 @@ build.bat install "C:\Program Files (x86)\Steam\steamapps\common\Assassin's Cree
 ```
 
 The build is always 32 bit, because the game is.
+
+GitHub Actions builds every push and pull request and keeps the result as a workflow artifact.
+Pushing a tag like `v1.0.0` also creates a GitHub release with `DiscordPresenceAC2.zip`:
+
+```
+git tag v1.0.0
+git push origin v1.0.0
+```
 
 ## Debugging
 

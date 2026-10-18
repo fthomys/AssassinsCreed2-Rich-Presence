@@ -23,6 +23,9 @@ build.bat install "<game folder>"  builds and copies .asi (and the ini, if missi
 - Testing means running the game. Set `DebugLog=1` in `scripts\DiscordPresenceAC2.ini` and read
   `scripts\DiscordPresenceAC2.log` (archives opened, region switches, heap scan results, stats every
   10 s, every presence sent). `DumpProcess=1` makes F9 write a full minidump (about 1 GB) next to it.
+- CI (`.github/workflows/build.yml`) runs `build.bat` on `windows-latest` for every push and pull
+  request and uploads the build as an artifact. A `vX.X.X` tag additionally publishes a GitHub
+  release with `DiscordPresenceAC2.zip` (`scripts\` with .asi and ini, plus README and LICENSE).
 - `dist\DiscordPresenceAC2.ini` is the release template. The installed ini in `scripts` is the one
   the plugin reads.
 
