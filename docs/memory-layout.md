@@ -192,19 +192,25 @@ The main sequences are the groups with IDs `0x10001858` (sequence 1) to `0x10001
 (sequence 14). `0x10001866` follows with a single mission and is not mapped.
 
 Index 0 of a sequence's mission list is the intro (`SQ07_M00` for sequence 7), which the DNA menu
-does not count as a memory. The index of the first mission that is not completed is the current
-memory number. Example from sequence 7, memory 4:
+does not count as a memory, so the list index is the memory number.
 
-| Index | State |
-|---|---|
-| 0 to 3 | 6 (completed) |
-| 4 | 3 (available, current memory) |
-| 6, 7 | 3 |
-| 5, 8, 9, 10 | 1 |
+A sequence can offer several memories at once. Sequence 7 after memory 3:
 
-While free roaming, four missions outside the main sequences are always in state 5. The current
-main mission is expected to switch to state 5 while it is played; this is not confirmed with a
-dump yet.
+| Index | Free roaming | While memory 6 is played |
+|---|---|---|
+| 0 to 3 | 6 (completed) | 6 |
+| 4 | 3 (available) | 1 |
+| 5 | 1 | 1 |
+| 6 | 3 (available) | 5 (active) |
+| 7 | 3 (available) | 1 |
+| 8 to 10 | 1 | 1 |
+
+While a memory is played, that mission is in state 5 and the game temporarily locks the other
+available ones. The plugin therefore looks for a mission in state 5 first; only if there is none,
+the player is free roaming. Confirmed with a dump while playing memory 6, which the DNA menu
+showed as "Erinnerung 6", so the list index is the memory number.
+
+Four missions outside the main sequences are always in state 5, also while free roaming.
 
 `MissionManager + 0x8B4` is an array of the active missions, `+0x88C` an array of groups that are
 still locked. Neither is a stable way to the sequences, so the plugin scans for the groups.
@@ -228,7 +234,7 @@ AnimusDatabaseData
   +0x48  uint32_t localization id of the description
 ```
 
-Only the triggers of the currently loaded region exist in memory. Localized names are not resident
+Confirmed in Tuscany, Venice and Florence. Only the triggers of the currently loaded region exist in memory. Localized names are not resident
 while the database menu is closed. Entries named `District of ...` are lore entries, not areas.
 
 `FeatherDistrictInfo` (24 instances, localization ID at `+0x0C`) lists the districts for the

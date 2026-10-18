@@ -206,19 +206,29 @@ bool ReadStats(uintptr_t player, GameState& state) {
     return ReadFlorins(human, state.florins) && ReadHealth(ai, state);
 }
 
-bool FirstOpenMission(uintptr_t group, int& index, uint32_t& missionState) {
+bool CurrentMission(uintptr_t group, int& index, uint32_t& missionState) {
     uint32_t data, count;
     if (!ReadArray(group + kGroupMissions, data, count)) return false;
+    int firstOpen = -1;
+    uint32_t firstOpenState = 0;
     for (uint32_t i = 0; i < count; i++) {
-        uint32_t entry, mission;
+        uint32_t entry, mission, state;
         if (!Read(data + i * 4, entry) || !Read(entry, mission) || VtableOf(mission) != Uplay::kVtMission) return false;
-        if (!Read(mission + kMissionState, missionState)) return false;
-        if (missionState != kMissionCompleted) {
+        if (!Read(mission + kMissionState, state)) return false;
+        if (state == kMissionActive) {
             index = (int)i;
+            missionState = state;
             return true;
         }
+        if (state != kMissionCompleted && firstOpen < 0) {
+            firstOpen = (int)i;
+            firstOpenState = state;
+        }
     }
-    return false;
+    if (firstOpen < 0) return false;
+    index = firstOpen;
+    missionState = firstOpenState;
+    return true;
 }
 
 bool ReadProgress(const uintptr_t* groups, GameState& state) {
@@ -229,7 +239,7 @@ bool ReadProgress(const uintptr_t* groups, GameState& state) {
 
         int index;
         uint32_t missionState;
-        if (!FirstOpenMission(groups[s], index, missionState)) return false;
+        if (!CurrentMission(groups[s], index, missionState)) return false;
         state.sequence = s + 1;
         state.memory = index > 0 ? index : 1;
         state.missionState = (int)missionState;

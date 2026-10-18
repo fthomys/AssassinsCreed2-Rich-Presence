@@ -48,9 +48,15 @@ exact pointers to object starts, with class names at each step, gives readable c
 | Florins | 10911 before and 10661 after spending 250, then several fast travel costs |
 | Health | 56 of 56, 47 after a hit, 14 bars confirmed by the player |
 | Sequence and memory | sequence 7, memory 4 confirmed by the player |
+| Active memory | dump while playing sequence 7, memory 6 ("Frühjahrsputz" in the German DNA menu): index 6 in state 5, the other available memories locked |
 | Template player | 20 health and 0 florins in the main menu, position near the origin |
-| Landmark | nearest building around San Gimignano matched the player's location |
+| Landmark | nearest building in Tuscany, Venice and Florence matched the player's location |
+| Main menu | no player found while in the main menu after the template fix |
 | Regions | Florence, Venice, Monteriggioni, Tuscany switched correctly during fast travel |
 
-Not confirmed yet: the main mission switching to state 5 while it is played, and landmarks in
-Florence and Venice.
+## Mistakes worth remembering
+
+- The first unfinished mission is not always the current memory. Sequences offer parallel
+  memories, and the one being played is the one in state 5.
+- The player template is not exactly at the origin (z is about -0.0003), so an exact zero check
+  does not catch it.

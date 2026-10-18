@@ -8,13 +8,10 @@
 - [x] Current sequence and memory
 - [x] Free roaming state with the nearest landmark
 - [x] Official discord-rpc library, linked statically
-
-## Needs testing
-
-- [ ] Memory detection while a memory is actually being played (mission state 5)
-- [ ] Landmarks in Florence and Venice, so far only checked around San Gimignano
-- [ ] Main menu no longer showing the player template as free roaming
-- [ ] GitHub Actions build on every push, release zip for `vX.X.X` tags
+- [x] Memory detection with parallel memories
+- [x] Landmarks in Florence, Venice and Tuscany
+- [x] Main menu no longer showing the player template as free roaming
+- [x] GitHub Actions build on every push, release zip for `vX.X.X` tags
 
 ## Planned
 
@@ -22,6 +19,7 @@
   `DataPC_WhiteRoom.forge`, so this needs a value from memory.
 - [ ] Localized landmark names. The game only loads them when the database menu is open, so the
   plugin would have to read them from the localization data itself.
+- [ ] Memory title, like "Frühjahrsputz" for sequence 7, memory 6 in the German version
 - [ ] Notoriety level of the current city (`NotorietyManager`)
 - [ ] Side activities: assassination contracts, races, courier and beat up missions
 - [ ] Collectibles: feathers, glyphs and codex pages

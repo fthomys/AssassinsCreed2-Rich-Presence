@@ -124,9 +124,9 @@ world and has the most components (Ezio has 26) is used.
 
 **Story progress.** The main sequences are `MissionGroup` objects with fixed IDs, `0x10001858`
 for sequence 1 up to `0x10001865` for sequence 14. Each group has a state (`2` while it is
-running) and an ordered list of its missions, where index 0 is the intro and the index of the
-first unfinished mission is the current memory. That mission has state `5` while it is being
-played, otherwise the player is free roaming.
+running) and an ordered list of its missions, where index 0 is the intro and the list index is
+the memory number. The memory being played has state `5`; if no mission of the running sequence
+is in that state, the player is free roaming.
 
 **Landmarks.** The game has no notion of a current district. What it does have are the Animus
 database triggers that unlock an entry when Ezio gets close to a building. Each
