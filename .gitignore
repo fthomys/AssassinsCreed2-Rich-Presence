@@ -1,0 +1,7 @@
+build/
+*.dmp
+*.log
+*.obj
+*.exp
+*.lib
+.vs/
